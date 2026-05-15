@@ -1,0 +1,52 @@
+# === Arduino ===
+*.elf
+*.hex
+*.bin
+*.map
+build/
+.build/
+*.o
+*.d
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === OS ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# === LaTeX ===
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+*.dvi
+*.ps
+rapport/*.pdf
+
+# === Python (scripts utilitaires) ===
+__pycache__/
+*.pyc
+.env
+venv/
+
+# === Divers ===
+*.bak
+*.tmp
+node_modules/

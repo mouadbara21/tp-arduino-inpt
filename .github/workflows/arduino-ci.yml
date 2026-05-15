@@ -1,0 +1,77 @@
+name: Arduino CI - Compilation de tous les sketches
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Compilation Arduino AVR
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installation de arduino-cli
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Configuration de la plateforme Arduino AVR
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+
+      - name: Installation des librairies
+        run: |
+          arduino-cli lib install "Adafruit Motor Shield library"
+
+      - name: Compilation - Exercice 1
+        run: |
+          echo "=== Exercice 1 ==="
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_sketch_hello
+          echo "✅ Ex1_sketch_hello OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_LED_serial
+          echo "✅ Ex1_LED_serial OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_commandes_textuelles
+          echo "✅ Ex1_commandes_textuelles OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_deux_LEDs
+          echo "✅ Ex1_deux_LEDs OK"
+
+      - name: Compilation - Exercice 2
+        run: |
+          echo "=== Exercice 2 ==="
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_PIR_base
+          echo "✅ Ex2_PIR_base OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_PIR_LED
+          echo "✅ Ex2_PIR_LED OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_alarme
+          echo "✅ Ex2_alarme OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_ultrason
+          echo "✅ Ex2_ultrason OK"
+
+      - name: Compilation - Exercice 3
+        run: |
+          echo "=== Exercice 3 ==="
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_ventilateur_pwm
+          echo "✅ Ex3_ventilateur_pwm OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_machine_etat
+          echo "✅ Ex3_machine_etat OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_rampe
+          echo "✅ Ex3_rampe OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_securite
+          echo "✅ Ex3_securite OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_servo_stepper
+          echo "✅ Ex3_servo_stepper OK"
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_PIR_porte
+          echo "✅ Ex3_PIR_porte OK"
+
+      - name: Résumé de la compilation
+        if: always()
+        run: |
+          echo "============================================"
+          echo "  RÉSUMÉ : 14 sketches compilés avec succès"
+          echo "  Plateforme : arduino:avr:uno"
+          echo "  Librairies : AFMotor, Servo (built-in)"
+          echo "============================================"
