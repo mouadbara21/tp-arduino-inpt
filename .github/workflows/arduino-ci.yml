@@ -23,49 +23,49 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install arduino:avr
 
-      - name: Installation de la librairie AFMotor (Motor Shield V1)
+      - name: Installation des librairies
         run: |
-          mkdir -p ~/Arduino/libraries
-          git clone https://github.com/adafruit/Adafruit-Motor-Shield-library.git ~/Arduino/libraries/AFMotor
+          arduino-cli lib install "Adafruit Motor Shield library"
+          arduino-cli lib install "Servo"
 
       - name: Compilation - Exercice 1
         run: |
           echo "=== Exercice 1 ==="
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice1/Ex1_sketch_hello
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_sketch_hello
           echo "✅ Ex1_sketch_hello OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice1/Ex1_LED_serial
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_LED_serial
           echo "✅ Ex1_LED_serial OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice1/Ex1_commandes_textuelles
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_commandes_textuelles
           echo "✅ Ex1_commandes_textuelles OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice1/Ex1_deux_LEDs
+          arduino-cli compile --fqbn arduino:avr:uno exercice1/Ex1_deux_LEDs
           echo "✅ Ex1_deux_LEDs OK"
 
       - name: Compilation - Exercice 2
         run: |
           echo "=== Exercice 2 ==="
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice2/Ex2_PIR_base
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_PIR_base
           echo "✅ Ex2_PIR_base OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice2/Ex2_PIR_LED
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_PIR_LED
           echo "✅ Ex2_PIR_LED OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice2/Ex2_alarme
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_alarme
           echo "✅ Ex2_alarme OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice2/Ex2_ultrason
+          arduino-cli compile --fqbn arduino:avr:uno exercice2/Ex2_ultrason
           echo "✅ Ex2_ultrason OK"
 
       - name: Compilation - Exercice 3
         run: |
           echo "=== Exercice 3 ==="
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice3/Ex3_ventilateur_pwm
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_ventilateur_pwm
           echo "✅ Ex3_ventilateur_pwm OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice3/Ex3_machine_etat
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_machine_etat
           echo "✅ Ex3_machine_etat OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice3/Ex3_rampe
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_rampe
           echo "✅ Ex3_rampe OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice3/Ex3_securite
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_securite
           echo "✅ Ex3_securite OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice3/Ex3_servo_stepper
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_servo_stepper
           echo "✅ Ex3_servo_stepper OK"
-          arduino-cli compile --fqbn arduino:avr:uno --libraries ~/Arduino/libraries exercice3/Ex3_PIR_porte
+          arduino-cli compile --fqbn arduino:avr:uno exercice3/Ex3_PIR_porte
           echo "✅ Ex3_PIR_porte OK"
 
       - name: Resume de la compilation
@@ -74,5 +74,5 @@ jobs:
           echo "============================================"
           echo "  RESUME : 14 sketches compiles"
           echo "  Plateforme : arduino:avr:uno"
-          echo "  Librairies : AFMotor (V1), Servo (built-in)"
+          echo "  Librairies : AFMotor (V1), Servo"
           echo "============================================"
